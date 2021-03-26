@@ -133,6 +133,7 @@ function obj:moveAndResize(option)
     if cwin then
         local cscreen = cwin:screen()
         local cres = cscreen:fullFrame()
+        local isFullScreen = cwin:isFullScreen()
         local stepw = cres.w/obj.gridparts
         local steph = cres.h/obj.gridparts
         local wf = cwin:frame()
@@ -160,6 +161,15 @@ function obj:moveAndResize(option)
             cwin:setFrame({x=wf.x-stepw, y=wf.y-steph, w=wf.w+(stepw*2), h=wf.h+(steph*2)})
         elseif option == "shrink" then
             cwin:setFrame({x=wf.x+stepw, y=wf.y+steph, w=wf.w-(stepw*2), h=wf.h-(steph*2)})
+        elseif option == "realSmall" then 
+            if isFullScreen then
+                cwin:setFullScreen(false)
+            end
+            cwin:centerOnScreen()
+        elseif option== "realfull" then
+            if not isFullScreen then
+                cwin:setFullScreen(true)
+            endp
         end
     else
         hs.alert.show("No focused window!")
