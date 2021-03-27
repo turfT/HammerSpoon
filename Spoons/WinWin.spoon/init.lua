@@ -153,6 +153,14 @@ function obj:moveAndResize(option)
             cwin:setFrame({x=cres.x, y=cres.y+cres.h/2, w=cres.w/2, h=cres.h/2})
         elseif option == "cornerSE" then
             cwin:setFrame({x=cres.x+cres.w/2, y=cres.y+cres.h/2, w=cres.w/2, h=cres.h/2})
+        
+        elseif option == "thirdleft" then
+            cwin:setFrame({x=cres.x, y=cres.y, w=cres.w/3, h=cres.h})
+        elseif option == "thirdmiddle" then
+            cwin:setFrame({x=cres.x+cres.w/3, y=cres.y, w=cres.w/3, h=cres.h})
+        elseif option == "thirdright" then
+            cwin:setFrame({x=cres.x+cres.w/3*2, y=cres.y, w=cres.w/3, h=cres.h})
+
         elseif option == "fullscreen" then
             cwin:setFrame({x=cres.x, y=cres.y, w=cres.w, h=cres.h})
         elseif option == "center" then
@@ -169,7 +177,7 @@ function obj:moveAndResize(option)
         elseif option== "realfull" then
             if not isFullScreen then
                 cwin:setFullScreen(true)
-            endp
+            end
         end
     else
         hs.alert.show("No focused window!")
